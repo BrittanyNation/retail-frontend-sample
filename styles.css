@@ -1,0 +1,11 @@
+body{font-family:system-ui,sans-serif;margin:0;background:#fbfaf7;color:#26312a}
+header{display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+main{padding:1.5rem 5%}
+.filters button{margin-right:.5rem;padding:.45rem 1rem;border-radius:999px;border:1px solid #9db2a4;background:#fff;cursor:pointer}
+.filters button.active{background:#2f5d43;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.product{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.product h3{margin:.25rem 0}.price{font-weight:700;color:#2f5d43}
+.product button{background:#2f5d43;color:#fff;border:none;border-radius:8px;padding:.5rem .9rem;cursor:pointer}
+.cart-detail{margin-top:2rem;background:#fff;border-radius:12px;padding:1rem}
+footer{text-align:center;padding:1.5rem;color:#6a7a6f}
