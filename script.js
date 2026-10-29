@@ -34,11 +34,34 @@ function renderCart() {
     const p = PRODUCTS.find(x => x.id === id);
     count += qty; total += qty * p.price;
     const li = document.createElement('li');
-    li.textContent = `${p.name} × ${qty} — $${(qty * p.price).toFixed(2)}`;
+    li.textContent = `${p.name} × ${qty} — $${(qty * p.price).toFixed(2)} `;
+    const rm = document.createElement('button');
+    rm.type = 'button';
+    rm.textContent = 'Remove';
+    rm.setAttribute('aria-label', `Remove ${p.name} from cart`);
+    rm.addEventListener('click', () => { cart.delete(id); renderCart(); });
+    li.appendChild(rm);
     items.appendChild(li);
   });
   document.getElementById('cart-count').textContent = count;
   document.getElementById('cart-total').textContent = total.toFixed(2);
+  const empty = document.getElementById('cart-empty');
+  if (empty) empty.hidden = count > 0;
+  const co = document.getElementById('checkout-btn');
+  if (co) co.disabled = count === 0;
+}
+const checkoutBtn = document.getElementById('checkout-btn');
+if (checkoutBtn) {
+  checkoutBtn.addEventListener('click', () => {
+    let count = 0, total = 0;
+    cart.forEach((qty, id) => { const p = PRODUCTS.find(x => x.id === id); count += qty; total += qty * p.price; });
+    if (count === 0) return;
+    const ref = 'TS-' + (1000 + Math.floor(Math.random() * 9000));
+    document.getElementById('order-note').textContent =
+      `Order ${ref} placed (demo): ${count} item${count === 1 ? '' : 's'}, $${total.toFixed(2)} total. No real order or payment — this is a portfolio sample.`;
+    cart.clear();
+    renderCart();
+  });
 }
 document.querySelectorAll('.filters button').forEach(btn => {
   btn.addEventListener('click', () => {
